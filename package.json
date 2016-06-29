@@ -1,0 +1,25 @@
+{
+  "name": "wapi",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.12.0",
+    "body-parser": "^1.15.2",
+    "browserify": "^13.0.1",
+    "cors": "^2.7.1",
+    "form-serialize": "^0.7.1",
+    "lodash": "^4.13.1",
+    "mongoose": "^4.5.1",
+    "mustache": "^2.2.1",
+    "node": "0.0.0",
+    "nodemailer": "^2.4.2",
+    "router": "^1.1.4"
+  },
+  "devDependencies": {},
+  "description": ""
+}
