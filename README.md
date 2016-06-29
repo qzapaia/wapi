@@ -21,7 +21,7 @@ app.listen(port,function(){
 
 #### Browser
 ```html
-<script type="text/javascript" src="http://localhost:3004/browser.js"></script>
+<script type="text/javascript" src="http://apihost/browser.js"></script>
 ```
 
 
@@ -102,7 +102,7 @@ It use the **.wapi-form-wrapper .wapi-form .wapi-form-done .wapi-form-fail** cla
 	</div>
 
 </div>
-<script type="text/javascript" src="http://localhost:3004/browser.js"></script>
+<script type="text/javascript" src="http://apihost/browser.js"></script>
 <script>
 	wapi.autoInitForms();
 </script>
