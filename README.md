@@ -1,5 +1,5 @@
 # WAPI 
-WAPI is a middleware generator for express that make the common tasks in an API (REST, emails, etc .. ) easier.
+WAPI is a middleware generator for express that make the common tasks in an API (REST, emails, etc .. ) easier
 
 # Setup
 
