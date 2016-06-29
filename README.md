@@ -24,7 +24,9 @@ app.listen(port,function(){
 
 #### Browser
 ```html
-<script type="text/javascript" src="http://apihost/browser.js"></script>
+	...
+	<script type="text/javascript" src="http://apihost/browser.js"></script>
+</body>
 ```
 
 
@@ -91,22 +93,25 @@ It use the **.wapi-form-wrapper .wapi-form .wapi-form-done .wapi-form-fail** cla
 **IMPORTANT**: **data-form-name** attribute is necesary in the wrapper
 
 ```html
-<div class="wapi-form-wrapper" data-form-name="contact">
-	<form class="wapi-form">
-		<input type="text" name="email" value="test@test.com" />  
-		<button>Enviar</button>
-	</form>
+	<div class="wapi-form-wrapper" data-form-name="contact">
+		<form class="wapi-form">
+			<input type="text" name="email" value="test@test.com" />  
+			<button>Enviar</button>
+		</form>
+		
+		<div class="wapi-form-done">
+			Great
+		</div>
+		<div class="wapi-form-fail">
+			:(
+		</div>
+	</div>
 	
-	<div class="wapi-form-done">
-		Great
-	</div>
-	<div class="wapi-form-fail">
-		:(
-	</div>
-
-</div>
-<script type="text/javascript" src="http://apihost/browser.js"></script>
-<script>
-	wapi.autoInitForms();
-</script>
+	...
+	
+	<script type="text/javascript" src="http://apihost/browser.js"></script>
+	<script>
+		wapi.autoInitForms();
+	</script>
+</body>
 ```
