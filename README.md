@@ -1,3 +1,6 @@
+# WAPI 
+WAPI is a middleware generator for express that make the common tasks in an API (REST, emails, etc .. ) easier.
+
 # Setup
 
 #### Server
@@ -19,9 +22,9 @@ app.listen(port,function(){
 
 ```
 
-#### Client side
+#### Browser
 ```html
-<script type="text/javascript" src="http://localhost:3004/browser.js"></script>
+<script type="text/javascript" src="http://apihost/browser.js"></script>
 ```
 
 
@@ -29,7 +32,7 @@ app.listen(port,function(){
 
 | Option  | Detail | Default Value |
 | ------------- | ------------- | ------------- |
-| baseURL  | Base URL for all the endpoints  | localhost.origin value |
+| baseURL  | Is the base URL used by browser.js | localhost.origin value |
 
 
 ## Complex Options (server side)
@@ -55,13 +58,15 @@ app.use(wapi.api({
 
 ```
 ## Forms
+#### Server
+
 Every key in the **forms** object will generate a new enpoint to the api (/forms/{key})
 
 **IMPORTANT:** SMTP config is necesary
 
-```js
-// Server
 
+
+```js
 app.use(wapi.api({
 	// ....
 	forms:{
@@ -79,15 +84,13 @@ app.use(wapi.api({
 
 ```
 
-### Client side
+#### Browser
 
 It use the **.wapi-form-wrapper .wapi-form .wapi-form-done .wapi-form-fail** classes to work
 
 **IMPORTANT**: **data-form-name** attribute is necesary in the wrapper
 
-```
-
-
+```html
 <div class="wapi-form-wrapper" data-form-name="contact">
 	<form class="wapi-form">
 		<input type="text" name="email" value="test@test.com" />  
@@ -102,7 +105,7 @@ It use the **.wapi-form-wrapper .wapi-form .wapi-form-done .wapi-form-fail** cla
 	</div>
 
 </div>
-<script type="text/javascript" src="http://localhost:3004/browser.js"></script>
+<script type="text/javascript" src="http://apihost/browser.js"></script>
 <script>
 	wapi.autoInitForms();
 </script>
