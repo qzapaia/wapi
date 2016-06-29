@@ -29,7 +29,7 @@ app.listen(port,function(){
 
 | Option  | Detail | Default Value |
 | ------------- | ------------- | ------------- |
-| baseURL  | Base URL for all the endpoints  | localhost.origin value |
+| baseURL  | Is the base URL used by browser.js | localhost.origin value |
 
 
 ## Complex Options (server side)
