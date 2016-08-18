@@ -1,6 +1,6 @@
 {
   "name": "wapi",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "index.js",
   "scripts": {
     "patch": "git commit -am 'new patch' && npm version patch -m 'patch'"
