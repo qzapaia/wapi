@@ -145,7 +145,7 @@ classes to work
 1. Setup the `w-form` diretive with the form name
 2. Place the `ng-submit` listener and call the `submit()` method
 3. Set all the input that you wanna send with `ng-model="data.fieldName"`
-4. Use ng-show to show `submitted` or `fail` states
+4. Use `ng-show` to show `submitted` or `fail` states
 
 ```html
 <form w-form="contact" ng-submit="submit()">
