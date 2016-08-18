@@ -1,9 +1,9 @@
-# WAPI 
+# WAPI
 WAPI is a middleware generator for express that make the common tasks in an API (REST, emails, etc .. ) easier
 
 # Setup
 
-#### Server
+## Node
 
 ```js
 
@@ -21,33 +21,48 @@ app.listen(port,function(){
 })
 
 ```
+#### Options
 
-#### Browser
+| Option  | Detail | Default Value |
+| ------------- | ------------- | ------------- |
+| baseURL  | Is the base URL used by browser.js | localhost.origin value |
+
+## Browser (Vanilla JS)
 ```html
 	...
 	<script type="text/javascript" src="http://apihost/browser.js"></script>
 </body>
 ```
 
-
-## Simple Options (server side)
-
-| Option  | Detail | Default Value |
-| ------------- | ------------- | ------------- |
-| baseURL  | Is the base URL used by browser.js | localhost.origin value |
+## Browser (Angular)
 
 
-## Complex Options (server side)
+```html
+		...
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+	</head>
+	<body ng-app="ngWapi" ng-cloak>
+		...
+		<script type="text/javascript" src="http://apihost/ng-wapi.js"></script>
+	</body>
+```
+*NOTE:* If the app is already an Angular application just call `ng-wapi.js` and
+set the `wapi` module as dependency of your app.
+
+```js
+	// example
+	angular.module('myApp',['ngWapi']);
+```
 
 ## SMTP
-This is necesary for all the endpoints those emails 
+This is necesary for all the endpoints that send emails
 
 ```js
 
 app.use(wapi.api({
 	// ....
 	smtp:{
-	  host: 'smtp-pulse.com', 
+	  host: 'smtp-pulse.com',
 	  port: 2525,
 	  auth: {
 	      user: 'email@domain.com',
@@ -60,12 +75,12 @@ app.use(wapi.api({
 
 ```
 ## Forms
-#### Server
+
+#### Node
 
 Every key in the **forms** object will generate a new enpoint to the api (/forms/{key})
 
 **IMPORTANT:** SMTP config is necesary
-
 
 
 ```js
@@ -86,9 +101,10 @@ app.use(wapi.api({
 
 ```
 
-#### Browser
+#### Browser (Vanilla)
 
-It use the **.wapi-form-wrapper .wapi-form .wapi-form-done .wapi-form-fail** classes to work
+It use the `.wapi-form-wrapper` `.wapi-form` `.wapi-form-done` `.wapi-form-fail`
+classes to work
 
 **IMPORTANT**: **data-form-name** attribute is necesary in the wrapper
 
@@ -98,7 +114,7 @@ It use the **.wapi-form-wrapper .wapi-form .wapi-form-done .wapi-form-fail** cla
 			<input type="text" name="email" value="test@test.com" />  
 			<button>Enviar</button>
 		</form>
-		
+
 		<div class="wapi-form-done">
 			Great
 		</div>
@@ -106,12 +122,34 @@ It use the **.wapi-form-wrapper .wapi-form .wapi-form-done .wapi-form-fail** cla
 			:(
 		</div>
 	</div>
-	
+
 	...
-	
+
 	<script type="text/javascript" src="http://apihost/browser.js"></script>
 	<script>
 		wapi.autoInitForms();
 	</script>
 </body>
+```
+#### Browser (Angular)
+1. Setup the `w-form` diretive with the form name
+2. Place the `ng-submit` listener and call the `submit()` method
+3. Set all the input that you wanna send with `ng-model="data.fieldName"`
+4. Use ng-show to show `submitted` or `fail` states
+
+```html
+<form w-form="contact" ng-submit="submit()">
+
+	<form class="wapi-form">
+		<input type="text" ng-model="data.email" value="test@test.com" />
+		<button>Enviar</button>
+	</form>
+
+	<div class="wapi-form-done" ng-show="submitted">
+		Great
+	</div>
+	<div class="wapi-form-fail" ng-show="fail">
+		:(
+	</div>
+</form>
 ```

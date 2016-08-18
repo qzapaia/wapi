@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var nodemailer = require('nodemailer');
 var fs = require('fs');
 
-var endpoints = ['forms','browser.js'];
+var endpoints = ['forms','browser'];
 
 
 
@@ -18,10 +18,16 @@ exports.api = function(config){
 
 	setup(api,config);
 
-	// ## setup all middelwares
-	endpoints.forEach(function(epName){			
+	// ## setup all endpoints
+	endpoints.forEach(function(epName){
 		router.use('/'+epName+'/:id?', require('./endpoints/' + epName)(api, config));
 	});
+
+	// legacy support
+	router.use('/browser.js',function(req, res, next){
+		res.write("console.warn('WAPI: /browser.js URL is deprecated. use /browser/index.js instead.');");
+  	next();
+	},require('./endpoints/browser')(api, config));
 
 	return router;
 }
