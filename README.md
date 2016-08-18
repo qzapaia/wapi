@@ -10,7 +10,7 @@ WAPI is a middleware for express that make the common tasks in an API (REST, ema
 
 # Setup
 
-## Node
+### Node
 
 ```js
 
@@ -34,14 +34,16 @@ app.listen(port,function(){
 | ------------- | ------------- | ------------- |
 | baseURL  | Is the base URL used by browser/index.js | localhost.origin value |
 
-## Browser (Vanilla JS)
+### Browser (Vanilla JS)
 ```html
 	...
 	<script type="text/javascript" src="http://apihost/browser/index.js"></script>
 </body>
 ```
 
-## Browser (Angular)
+or
+
+### Browser (Angular)
 
 
 ```html
@@ -53,7 +55,7 @@ app.listen(port,function(){
 		<script type="text/javascript" src="http://apihost/ng-wapi.js"></script>
 	</body>
 ```
-*NOTE:* If the app is already an Angular application just call `ng-wapi.js` and
+**PST:** If the app is already an Angular application just call `ng-wapi.js` and
 set the `wapi` module as dependency of your app.
 
 ```js
@@ -61,7 +63,7 @@ set the `wapi` module as dependency of your app.
 	angular.module('myApp',['ngWapi']);
 ```
 
-## SMTP
+# SMTP
 This is necesary for all the endpoints that send emails
 
 ```js
@@ -81,9 +83,9 @@ app.use(wapi.api({
 }));
 
 ```
-## Forms
+# Forms
 
-#### Node
+### Node
 
 Every key in the **forms** object will generate a new enpoint to the api (/forms/{key})
 
@@ -108,7 +110,7 @@ app.use(wapi.api({
 
 ```
 
-#### Browser (Vanilla)
+### Browser (Vanilla)
 
 It use the `.wapi-form-wrapper` `.wapi-form` `.wapi-form-done` `.wapi-form-fail`
 classes to work
@@ -139,7 +141,7 @@ classes to work
 	</script>
 </body>
 ```
-#### Browser (Angular)
+### Browser (Angular)
 1. Setup the `w-form` diretive with the form name
 2. Place the `ng-submit` listener and call the `submit()` method
 3. Set all the input that you wanna send with `ng-model="data.fieldName"`
