@@ -1,38 +1,32 @@
+require('whatwg-fetch');
+var serialize = require('form-serialize');
+var _ = {
+	defaults:require('lodash/defaults'),
+	forIn:require('lodash/forIn')
+}
+
+
 if(!window._wapiConfigFromServer){
 	console.warn('_wapiConfigFromServer is not present. This could generate problems 😳');
 }
 
-require('whatwg-fetch');
-var serialize = require('form-serialize');
-var defaults = require('lodash/defaults');
-
-var nativeFetch = window.fetch;
-
-
-var _ = {
-	defaults:defaults
-}
-
-var processOptions = function(options){
-  var fetchDefaultOptions = {
-    headers:new Headers({
-      'Content-Type': 'application/json'
-    })
-  };
-
-  const newOptions = _.defaults(options, fetchDefaultOptions);
-  newOptions.body = newOptions.body && JSON.stringify(newOptions.body);
-  return newOptions;
-}
 
 var config = _.defaults(window._wapiConfigFromServer || {},{
 	baseURL:location.origin
 });
 
-var fetch = function(url,options){
+var jsonFetch = function(url,options){
   var fullURL = config.baseURL + url;
 
-  return nativeFetch(fullURL, processOptions(options)).then(function(res){
+	var newOptions = _.defaults(options, {
+		headers:new Headers({
+			'Content-Type': 'application/json'
+		})
+	});
+
+	newOptions.body = newOptions.body && JSON.stringify(newOptions.body);
+
+	return fetch(fullURL, newOptions).then(function(res){
     var json = res.json();
 		if(res.status >= 400){
       throw json;
@@ -43,10 +37,18 @@ var fetch = function(url,options){
 }
 
 exports.submitForm = function(options){
-  var url = '/forms/' + options.name;
+  var url = config.baseURL + '/forms/' + options.name;
+	var body = new FormData();
+
+	_.forIn(options.body, function(value, key) {
+		body.append(key,value);
+	});
+	_.forIn(options.files, function(value, key) {
+		body.append(key,value);
+	});
 
   return fetch(url,{
     method: 'POST',
-    body:options.body
+    body:body
   });
 }

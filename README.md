@@ -146,14 +146,22 @@ classes to work
 2. Place the `ng-submit` listener and call the `submit()` method
 3. Set all the input that you wanna send with `ng-model="data.fieldName"`
 4. Use ng-show to show `submitted` or `fail` states
+5. Add `file` attribute to create attach files buttons. In order to customize 
+  the preview of the files overwrite this CSS classes: `.dz-preview` `.dz-image`
+  `.dz-details` `.dz-progress` `.dz-error-message` `.dz-success-mark` `.dz-error-mark`
 
 ```html
 <form w-form="contact" ng-submit="submit()">
 
-	<form class="wapi-form">
+  <fieldset>
 		<input type="text" ng-model="data.email" value="test@test.com" />
 		<button>Enviar</button>
-	</form>
+  </fieldset>
+
+  <fieldset>
+    <button type="button" file name="cv">CV</button>
+    <div file name="picture">Pic</div>
+  </fieldset>
 
 	<div class="wapi-form-done" ng-show="submitted">
 		Great

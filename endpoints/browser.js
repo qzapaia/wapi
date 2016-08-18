@@ -10,12 +10,8 @@ module.exports = function(api,mainConfig){
 
 	return function(req,res,next){
     var b = browserify();
-
-    if(req.params.id == 'ng-wapi.js'){
-      b.add(path.resolve(__dirname,'../browser/ng-wapi.js'));
-    }else{
-			b.add(path.resolve(__dirname,'../browser/'));
-		}
+		// probar esto
+		b.add(path.resolve(__dirname,'../browser/',req.params.id));
 
 		res.write('window._wapiConfigFromServer='+JSON.stringify(config)+';');
 		b.bundle().pipe(res);
