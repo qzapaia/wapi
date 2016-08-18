@@ -153,15 +153,15 @@ classes to work
 ```html
 <form w-form="contact" ng-submit="submit()">
 
-  <fieldset>
+	<fieldset>
 		<input type="text" ng-model="data.email" value="test@test.com" />
 		<button>Enviar</button>
-  </fieldset>
+	</fieldset>
 
-  <fieldset>
-    <button type="button" file name="cv">CV</button>
-    <div file name="picture">Pic</div>
-  </fieldset>
+	<fieldset>
+		<button type="button" file name="cv">CV</button>
+		<div file name="picture">Pic</div>
+	</fieldset>
 
 	<div class="wapi-form-done" ng-show="submitted">
 		Great
