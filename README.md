@@ -37,7 +37,7 @@ app.listen(port,function(){
 ### Browser (Vanilla JS)
 ```html
 	...
-	<script type="text/javascript" src="http://apihost/browser/index.js"></script>
+	<script type="text/javascript" src="//apihost/browser/index.js"></script>
 </body>
 ```
 
@@ -48,11 +48,11 @@ or
 
 ```html
 		...
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
 	</head>
 	<body ng-app="ngWapi" ng-cloak>
 		...
-		<script type="text/javascript" src="http://apihost/ng-wapi.js"></script>
+		<script type="text/javascript" src="//apihost/ng-wapi.js"></script>
 	</body>
 ```
 **PST:** If the app is already an Angular application just call `ng-wapi.js` and
@@ -135,7 +135,7 @@ classes to work
 
 	...
 
-	<script type="text/javascript" src="http://apihost/browser.js"></script>
+	<script type="text/javascript" src="//apihost/browser/index.js"></script>
 	<script>
 		wapi.autoInitForms();
 	</script>
