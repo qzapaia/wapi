@@ -3,7 +3,7 @@
   "version": "1.0.4",
   "main": "index.js",
   "scripts": {
-    "commpatch":"git commit -am 'new patch' && npm run patch"
+    "commpatch":"git commit -am 'new patch' && npm run patch",
     "patch": "npm version patch -am 'patch'"
   },
   "author": "",
