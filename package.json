@@ -6,7 +6,7 @@
 
   "scripts": {
     "commpatch":"git commit -am 'new patch' && npm run patch",
-    "patch": "npm version patch -am 'patch'"
+    "patch": "npm version patch -m 'patch'"
   },
 
   "author": "",
