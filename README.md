@@ -25,12 +25,12 @@ app.listen(port,function(){
 
 | Option  | Detail | Default Value |
 | ------------- | ------------- | ------------- |
-| baseURL  | Is the base URL used by browser.js | localhost.origin value |
+| baseURL  | Is the base URL used by browser/index.js | localhost.origin value |
 
 ## Browser (Vanilla JS)
 ```html
 	...
-	<script type="text/javascript" src="http://apihost/browser.js"></script>
+	<script type="text/javascript" src="http://apihost/browser/index.js"></script>
 </body>
 ```
 
