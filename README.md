@@ -1,5 +1,12 @@
 # WAPI
-WAPI is a middleware generator for express that make the common tasks in an API (REST, emails, etc .. ) easier
+WAPI is a middleware for express that make the common tasks in an API (REST, emails, etc .. ) easier
+
+<div>
+ <a href="https://npmjs.org/package/wapi">
+    <img src="https://img.shields.io/npm/v/wapi.svg?style=flat-square"
+      alt="NPM version" />
+  </a>
+</div>
 
 # Setup
 
