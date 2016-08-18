@@ -3,7 +3,7 @@
   "version": "1.0.3",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "patch": "git commit -am 'new patch' && npm version patch -m 'patch'"
   },
   "author": "",
   "license": "ISC",
