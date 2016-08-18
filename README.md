@@ -109,6 +109,7 @@ classes to work
 **IMPORTANT**: **data-form-name** attribute is necesary in the wrapper
 
 ```html
+	<!-- HTML Structure - Look the classes !! and the data-form-name attribute -->
 	<div class="wapi-form-wrapper" data-form-name="contact">
 		<form class="wapi-form">
 			<input type="text" name="email" value="test@test.com" />  
