@@ -163,10 +163,10 @@ classes to work
 		<div file name="picture">Pic</div>
 	</fieldset>
 
-	<div class="wapi-form-done" ng-show="submitted">
+	<div ng-show="submitted">
 		Great
 	</div>
-	<div class="wapi-form-fail" ng-show="fail">
+	<div ng-show="fail">
 		:(
 	</div>
 </form>
