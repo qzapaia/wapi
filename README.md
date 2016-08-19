@@ -56,7 +56,7 @@ or
 	</body>
 ```
 **PST:** If the app is already an Angular application just call `ng-wapi.js` and
-set the `wapi` module as dependency of your app.
+set the `ngWapi` module as dependency of your app.
 
 ```js
 	// example
