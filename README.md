@@ -52,7 +52,7 @@ or
 	</head>
 	<body ng-app="ngWapi" ng-cloak>
 		...
-		<script type="text/javascript" src="//apihost/ng-wapi.js"></script>
+		<script type="text/javascript" src="//apihost/browser/ng-wapi.js"></script>
 	</body>
 ```
 **PST:** If the app is already an Angular application just call `ng-wapi.js` and
