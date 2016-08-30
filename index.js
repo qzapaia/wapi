@@ -1,37 +1,25 @@
 var Router = require('router');
 var cors = require('cors');
-var bodyParser = require('body-parser');
-var nodemailer = require('nodemailer');
 var fs = require('fs');
+var _ = require('lodash');
+var Router = require('router');
 
-var endpoints = ['forms','browser'];
-
-
-
-exports.api = function(config){
+module.exports = function(api){
 	var router = Router();
-	var api = {};
 
-	// ## basic middlwares
 	router.use(cors());
-	router.use(bodyParser.json({limit: '50mb'}));
 
-	setup(api,config);
+	router.use(require('./helpers/resolveHostname'))
 
-	// ## setup all endpoints
-	endpoints.forEach(function(epName){
-		router.use('/'+epName+'/:id?', require('./endpoints/' + epName)(api, config));
-	});
-
+	router.use('/browser/:id', require('./endpoints/browser'));
 	// legacy support
 	router.use('/browser.js',function(req, res, next){
 		res.write("console.warn('WAPI: /browser.js URL is deprecated. use /browser/index.js instead.');");
   	next();
-	},require('./endpoints/browser')(api, config));
+	},require('./endpoints/browser'));
+
+
+	router.use('/:resource/:id?', require('./endpoints/api'));
 
 	return router;
-}
-
-var setup = function(api,config){
-	api.email = nodemailer.createTransport(config.smtp);
-}
+};
