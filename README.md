@@ -129,7 +129,7 @@ In order to connect a form to an endpoint of the API
 3. Set all the input that you wanna send with `ng-model="data.fieldName"`
 4. Use ng-show to show `submitted` or `fail` states
 5. Add `file` attribute to create attach files buttons (dropzone) and use the `name` attribute.
-   In order to customize the preview of the files overwrite this CSS classes: `.dz-preview` `.dz-image`
+  - In order to customize the preview of the files overwrite this CSS classes: `.dz-preview` `.dz-image`
   `.dz-details` `.dz-progress` `.dz-error-message` `.dz-success-mark` `.dz-error-mark`
 
 ```html
