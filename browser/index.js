@@ -32,4 +32,6 @@ exports.autoInitForms = function(){
 	});
 }
 
+exports.apiClient = apiClient;
+
 window.wapi = module.exports;

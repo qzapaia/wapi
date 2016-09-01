@@ -1,5 +1,5 @@
 # WAPI
-WAPI is a middleware for express that make the common tasks in an API (REST, emails, etc .. ) easier
+WAPI is a middleware for express that make the common tasks in an API easier
 
 <div>
  <a href="https://npmjs.org/package/wapi">
@@ -19,9 +19,19 @@ var wapi = require('wapi');
 var port = process.env.PORT || 3004;
 var app = express();
 
-app.use(wapi.api({
-	// ... options
-}));
+var api = {
+  getUsers:function(){
+    //...
+  },
+  postContact:function(options){
+    //...
+  }
+}
+
+
+
+// app.use(wapi(api,options)); // options are optional
+app.use(wapi(api));
 
 app.listen(port,function(){
 	console.log(port);
@@ -32,9 +42,9 @@ app.listen(port,function(){
 
 | Option  | Detail | Default Value |
 | ------------- | ------------- | ------------- |
-| baseURL  | Is the base URL used by browser/index.js | localhost.origin value |
+| prefix  | Is the prefix path for all the API calls | "/api/v2" |
 
-### Browser (Vanilla JS)
+### Client side (Vanilla JS)
 ```html
 	...
 	<script type="text/javascript" src="//apihost/browser/index.js"></script>
@@ -43,7 +53,7 @@ app.listen(port,function(){
 
 or
 
-### Browser (Angular)
+### Client side (Angular)
 
 
 ```html
@@ -63,90 +73,54 @@ set the `wapi` module as dependency of your app.
 	angular.module('myApp',['ngWapi']);
 ```
 
-# SMTP
-This is necesary for all the endpoints that send emails
+# API
+
+Every method of the API object is related to an URL. For example: `getUsers()` will
+receive all the `GET` HTTP requests to the `/api/v1/users` endpoint.
+
+
+Every method has to return a Promise.
+
 
 ```js
+// ...
+var api = {
+  getUsers:function(options){
+    // ...
+  },
+  postUsers:function(options){
+    // ...
+  },
+  putUsers:function(options){
+    // ...
+  },
+  deleteUsers:function(options){
+    // ...
+  },
+}
 
-app.use(wapi.api({
-	// ....
-	smtp:{
-	  host: 'smtp-pulse.com',
-	  port: 2525,
-	  auth: {
-	      user: 'email@domain.com',
-	      pass: 'password'
-	  }
-	}
-	// ....
-
-}));
-
+app.use(wapi(api));
+// ...
 ```
+`options` are processed and selected data from the request
+
+| Option  | Detail |
+| ------------- | ------------- |
+| resourceName  | /api/v1/{resourceName} |
+| id  | /api/v1/{resourceName}/{id} |
+| body  | The body from a POST/PUT request for JSON and multipart |
+| files  | The files sended from a multipart request |
+| headers  | HTTP headers |
+| query  | Query string params |
+
 # Forms
+In order to connect a form to an endpoint of the API
 
-### Node
-
-Every key in the **forms** object will generate a new enpoint to the api (/forms/{key})
-
-**IMPORTANT:** SMTP config is necesary
-
-
-```js
-app.use(wapi.api({
-	// ....
-	forms:{
-		contact:{
-			from:'"My name" <me@company.space>',
-			to:'hi@gmail.com',
-			subject:'Contact from site',
-			template:'Name: {{name}}. <br /> Email:{{email}}' // data from req.body
-		}
-		//... other forms
-	}
-	// ....
-}))
-
-
-```
-
-### Browser (Vanilla)
-
-It use the `.wapi-form-wrapper` `.wapi-form` `.wapi-form-done` `.wapi-form-fail`
-classes to work
-
-**IMPORTANT**: **data-form-name** attribute is necesary in the wrapper
-
-```html
-	<!-- HTML Structure - Look the classes !! and the data-form-name attribute -->
-	<div class="wapi-form-wrapper" data-form-name="contact">
-		<form class="wapi-form">
-			<input type="text" name="email" value="test@test.com" />  
-			<button>Enviar</button>
-		</form>
-
-		<div class="wapi-form-done">
-			Great
-		</div>
-		<div class="wapi-form-fail">
-			:(
-		</div>
-	</div>
-
-	...
-
-	<script type="text/javascript" src="//apihost/browser/index.js"></script>
-	<script>
-		wapi.autoInitForms();
-	</script>
-</body>
-```
-### Browser (Angular)
-1. Setup the `w-form` diretive with the form name
+1. Setup the `w-form` diretive with the endpoint name (eg: `users`,`contact`)
 2. Place the `ng-submit` listener and call the `submit()` method
 3. Set all the input that you wanna send with `ng-model="data.fieldName"`
 4. Use ng-show to show `submitted` or `fail` states
-5. Add `file` attribute to create attach files buttons. In order to customize 
+5. Add `file` attribute to create attach files buttons. In order to customize
   the preview of the files overwrite this CSS classes: `.dz-preview` `.dz-image`
   `.dz-details` `.dz-progress` `.dz-error-message` `.dz-success-mark` `.dz-error-mark`
 

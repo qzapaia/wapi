@@ -10,7 +10,7 @@ var defaultOptions = {
 
 module.exports = function(api, apiOptions){
 	var router = Router();
-	apiOptions = _.defaults(apiOptions || {}, defaultOptions);
+	apiOptions = _.defaults(apiOptions, defaultOptions);
 
 	// midds
 	router.use(cors());
