@@ -78,12 +78,11 @@ Every API method receive `options` that  selected data from the request.
 | ------------- | ------------- |
 | resourceName  | /api/v1/{resourceName} |
 | id  | /api/v1/{resourceName}/{id} |
-| body  | The body from a POST/PUT request for JSON and multipart |
+| body or payload  | The body from a POST/PUT request for JSON and multipart |
+| query or options  | Query string params |
 | files  | The files sent from a multipart request |
+| access_token  | `Bearer 1234` authorization header or /api/v1/user/?access_token=1234  |
 | headers  | HTTP headers |
-| query  | Query string params |
-
-
 
 
 # Client side
