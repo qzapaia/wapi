@@ -72,20 +72,26 @@ var api = {
 app.use(wapi(api));
 // ...
 ```
-Every API method receive `options` that  selected data from the request.
+
+## Options
+Every API method receive selected data from the request
 
 | Option  | Detail |
 | ------------- | ------------- |
 | resourceName  | /api/v1/{resourceName} |
 | id  | /api/v1/{resourceName}/{id} |
-| body or payload  | The body from a POST/PUT request for JSON and multipart |
-| query or options  | Query string params |
+| body / payload  | The body from a POST/PUT request for JSON and multipart |
+| query / options  | Query string params |
 | files  | The files sent from a multipart request |
 | access_token  | `Bearer 1234` authorization header or /api/v1/user/?access_token=1234  |
 | headers  | HTTP headers |
 
 
+
+
 # Client side
+
+## Setup
 
 ### Vanilla JS (externalize `wapi` object)
 ```html
@@ -120,12 +126,12 @@ set the `ngWapi` module as dependency of your app.
 # Forms
 In order to connect a form to an endpoint of the API
 
-1. Setup the `w-form` diretive with the endpoint name (eg: `users`,`contact`)
+1. Setup the `w-form` directive with the endpoint name as the value (eg: `users`,`contact`)
 2. Place the `ng-submit` listener and call the `submit()` method
 3. Set all the input that you wanna send with `ng-model="data.fieldName"`
 4. Use ng-show to show `submitted` or `fail` states
-5. Add `file` attribute to create attach files buttons. In order to customize
-  the preview of the files overwrite this CSS classes: `.dz-preview` `.dz-image`
+5. Add `file` attribute to create attach files buttons (dropzone) and use the `name` attribute.
+   In order to customize the preview of the files overwrite this CSS classes: `.dz-preview` `.dz-image`
   `.dz-details` `.dz-progress` `.dz-error-message` `.dz-success-mark` `.dz-error-mark`
 
 ```html
