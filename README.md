@@ -62,11 +62,11 @@ or
 	</head>
 	<body ng-app="ngWapi" ng-cloak>
 		...
-		<script type="text/javascript" src="//apihost/ng-wapi.js"></script>
+		<script type="text/javascript" src="//apihost/browser/ng-wapi.js"></script>
 	</body>
 ```
 **PST:** If the app is already an Angular application just call `ng-wapi.js` and
-set the `wapi` module as dependency of your app.
+set the `ngWapi` module as dependency of your app.
 
 ```js
 	// example
@@ -127,20 +127,20 @@ In order to connect a form to an endpoint of the API
 ```html
 <form w-form="contact" ng-submit="submit()">
 
-  <fieldset>
+	<fieldset>
 		<input type="text" ng-model="data.email" value="test@test.com" />
 		<button>Enviar</button>
-  </fieldset>
+	</fieldset>
 
-  <fieldset>
-    <button type="button" file name="cv">CV</button>
-    <div file name="picture">Pic</div>
-  </fieldset>
+	<fieldset>
+		<button type="button" file name="cv">CV</button>
+		<div file name="picture">Pic</div>
+	</fieldset>
 
-	<div class="wapi-form-done" ng-show="submitted">
+	<div ng-show="submitted">
 		Great
 	</div>
-	<div class="wapi-form-fail" ng-show="fail">
+	<div ng-show="fail">
 		:(
 	</div>
 </form>
