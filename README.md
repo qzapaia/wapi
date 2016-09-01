@@ -55,16 +55,16 @@ Every method has to return a Promise.
 ```js
 // ...
 var api = {
-  getUsers:function(options){
+  getUsers:function(config){
     return db.users.find();
   },
-  postUsers:function(options){
+  postUsers:function(config){
     // ...
   },
-  putUsers:function(options){
+  putUsers:function(config){
     // ...
   },
-  deleteUsers:function(options){
+  deleteUsers:function(config){
     // ...
   },
 }
@@ -73,10 +73,10 @@ app.use(wapi(api));
 // ...
 ```
 
-#### Options
+#### config
 Every API method receive selected data from the request
 
-| Option  | Detail |
+| Config  | Detail |
 | ------------- | ------------- |
 | resourceName  | /api/v1/{resourceName} |
 | id  | /api/v1/{resourceName}/{id} |
