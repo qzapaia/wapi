@@ -7,8 +7,9 @@ module.exports = function(req,res,next){
 	var b = browserify();
 
 	var configInjectedFromServer = {
-		baseURL: process.env.HOSTNAME
+		baseURL: req._api.baseURL
 	};
+
 	b.add(path.resolve(__dirname,'../browser/',req.params.id));
 
 	res.write('window._wapiConfigFromServer='+JSON.stringify(configInjectedFromServer)+';');

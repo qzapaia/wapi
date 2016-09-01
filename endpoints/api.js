@@ -1,42 +1,33 @@
-var multiparty = require('multiparty');
 var bodyParser = require('body-parser');
 var Router = require('router');
-var router = Router();
+var camelcase = require('camelcase');
+var router = Router({mergeParams: true});
 var _ = require('lodash');
+var multimiddHelper = require('../helpers/multipart-middleware.js');
 
 router.use(bodyParser.json({limit: '50mb'}))
+router.use(multimiddHelper());
 
-router.use(function(req,res,next){
+module.exports = function(api){
 
-  if(req.method == 'POST' || req.method == 'PUT'){
-    var form = new multiparty.Form();
-    form.parse(req, function(err, fields, files) {
+  router.use(function(req,res,next){
+    var methodName = camelcase(req.method + '-' + req.params.resource);
+    var options = _.pick(req,['body','files'])
 
-      if(fields){
-        req.body = req.body || {};
+    var prom = api[methodName] && api[methodName](options);
 
-        Object.keys(fields).forEach(function(k){
-          req.body[k] = fields[k][0];
-        });
-      }
+    if(prom && prom.then){
+      prom.then(function(success){
+        res.json(success)
+      }).catch(function(error){
+        console.log(error);
+        error = _.defaults(error,{ status:400 })
+        res.status(error.status).end();
+      });
+    }else{
+      console.log('WAPI: method '+methodName+' doesn\'t return a Promise');
+    }
+  });
 
-      if(files){
-        req.files = req.files || {};
-
-        Object.keys(files).forEach(function(k){
-          req.files[k] = files[k][0];
-        });
-      }
-
-      next();
-    });
-  }
-
-});
-
-router.use(function(req,res,next){
-  console.log(req.files)
-  next();
-});
-
-module.exports = router;
+  return router;
+}

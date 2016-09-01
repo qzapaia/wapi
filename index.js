@@ -4,22 +4,23 @@ var fs = require('fs');
 var _ = require('lodash');
 var Router = require('router');
 
-module.exports = function(api){
+var defaultOptions = {
+	prefix:'/api/v1',
+}
+
+module.exports = function(api, apiOptions){
 	var router = Router();
+	apiOptions = _.defaults(apiOptions || {}, defaultOptions);
 
+	// midds
 	router.use(cors());
+	router.use(require('./helpers/resolveURLOrigin'));
+	router.use(require('./helpers/apiVars')(apiOptions));
+	router.use(require('./legacy-support'));
 
-	router.use(require('./helpers/resolveHostname'))
-
+	// endpoints
 	router.use('/browser/:id', require('./endpoints/browser'));
-	// legacy support
-	router.use('/browser.js',function(req, res, next){
-		res.write("console.warn('WAPI: /browser.js URL is deprecated. use /browser/index.js instead.');");
-  	next();
-	},require('./endpoints/browser'));
-
-
-	router.use('/:resource/:id?', require('./endpoints/api'));
+	router.use(apiOptions.prefix + '/:resource/:id?', require('./endpoints/api')(api));
 
 	return router;
 };

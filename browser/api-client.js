@@ -37,7 +37,7 @@ var jsonFetch = function(url,options){
 }
 
 exports.submitForm = function(options){
-  var url = config.baseURL + '/forms/' + options.name;
+  var url = config.baseURL + '/' + options.name;
 	var body = new FormData();
 
 	_.forIn(options.body, function(value, key) {
