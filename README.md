@@ -8,7 +8,7 @@ WAPI is a middleware for express that make the common tasks in an API easier
   </a>
 </div>
 
-# Setup
+## Setup
 
 ```js
 
@@ -43,7 +43,7 @@ app.listen(port,function(){
 | prefix  | Is the prefix path for all the API calls | "/api/v1" |
 
 
-# API
+## API
 
 Every method of the API object is related to an URL. For example: `getUsers()` will
 receive all the `GET` HTTP requests to the `/api/v1/users` endpoint.
@@ -73,7 +73,7 @@ app.use(wapi(api));
 // ...
 ```
 
-## Options
+#### Options
 Every API method receive selected data from the request
 
 | Option  | Detail |
@@ -89,11 +89,9 @@ Every API method receive selected data from the request
 
 
 
-# Client side
+## Client side setup
 
-## Setup
-
-### Vanilla JS (externalize `wapi` object)
+#### Vanilla JS (externalize `wapi` object)
 ```html
 	...
 	<script type="text/javascript" src="//apihost/browser/index.js"></script>
@@ -102,7 +100,7 @@ Every API method receive selected data from the request
 
 or
 
-### Angular
+#### Angular
 
 
 ```html
@@ -123,7 +121,7 @@ set the `ngWapi` module as dependency of your app.
 ```
 
 
-# Forms
+## Forms
 In order to connect a form to an endpoint of the API
 
 1. Setup the `w-form` directive with the endpoint name as the value (eg: `users`,`contact`)
