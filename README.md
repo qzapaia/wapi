@@ -10,8 +10,6 @@ WAPI is a middleware for express that make the common tasks in an API easier
 
 # Setup
 
-### Node
-
 ```js
 
 var express = require('express');
@@ -42,9 +40,55 @@ app.listen(port,function(){
 
 | Option  | Detail | Default Value |
 | ------------- | ------------- | ------------- |
-| prefix  | Is the prefix path for all the API calls | "/api/v2" |
+| prefix  | Is the prefix path for all the API calls | "/api/v1" |
 
-### Client side (Vanilla JS)
+
+# API
+
+Every method of the API object is related to an URL. For example: `getUsers()` will
+receive all the `GET` HTTP requests to the `/api/v1/users` endpoint.
+
+
+Every method has to return a Promise.
+
+
+```js
+// ...
+var api = {
+  getUsers:function(options){
+    return db.users.find();
+  },
+  postUsers:function(options){
+    // ...
+  },
+  putUsers:function(options){
+    // ...
+  },
+  deleteUsers:function(options){
+    // ...
+  },
+}
+
+app.use(wapi(api));
+// ...
+```
+Every API method receive `options` that  selected data from the request.
+
+| Option  | Detail |
+| ------------- | ------------- |
+| resourceName  | /api/v1/{resourceName} |
+| id  | /api/v1/{resourceName}/{id} |
+| body  | The body from a POST/PUT request for JSON and multipart |
+| files  | The files sent from a multipart request |
+| headers  | HTTP headers |
+| query  | Query string params |
+
+
+
+
+# Client side
+
+### Vanilla JS (externalize `wapi` object)
 ```html
 	...
 	<script type="text/javascript" src="//apihost/browser/index.js"></script>
@@ -53,7 +97,7 @@ app.listen(port,function(){
 
 or
 
-### Client side (Angular)
+### Angular
 
 
 ```html
@@ -73,45 +117,6 @@ set the `ngWapi` module as dependency of your app.
 	angular.module('myApp',['ngWapi']);
 ```
 
-# API
-
-Every method of the API object is related to an URL. For example: `getUsers()` will
-receive all the `GET` HTTP requests to the `/api/v1/users` endpoint.
-
-
-Every method has to return a Promise.
-
-
-```js
-// ...
-var api = {
-  getUsers:function(options){
-    // ...
-  },
-  postUsers:function(options){
-    // ...
-  },
-  putUsers:function(options){
-    // ...
-  },
-  deleteUsers:function(options){
-    // ...
-  },
-}
-
-app.use(wapi(api));
-// ...
-```
-`options` are processed and selected data from the request
-
-| Option  | Detail |
-| ------------- | ------------- |
-| resourceName  | /api/v1/{resourceName} |
-| id  | /api/v1/{resourceName}/{id} |
-| body  | The body from a POST/PUT request for JSON and multipart |
-| files  | The files sended from a multipart request |
-| headers  | HTTP headers |
-| query  | Query string params |
 
 # Forms
 In order to connect a form to an endpoint of the API
