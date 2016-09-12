@@ -22,6 +22,8 @@ module.exports = function(){
 
         next();
       });
+    }else{
+      next();
     }
   }
 }

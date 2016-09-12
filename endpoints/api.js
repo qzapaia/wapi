@@ -38,7 +38,6 @@ module.exports = function(api){
                    .value();
 
     var prom = api[methodName] && api[methodName](options);
-
     if(prom && prom.then){
       prom.then(function(success){
         res.json(success)

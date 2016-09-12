@@ -17,11 +17,18 @@ var config = _.defaults(window._wapiConfigFromServer || {},{
 
 var jsonFetch = function(url,options){
   var fullURL = config.baseURL + url;
+	var localStorageValuesToInclude = ['id_token','acccess_token'];
+
+	var defaultHeaders = {
+		'Content-Type': 'application/json'
+	}
+
+	localStorageValuesToInclude.forEach(function(name){
+		if(localStorage.getItem(name)){ defaultHeaders[name] = localStorage.getItem(name); }
+	});
 
 	var newOptions = _.defaults(options, {
-		headers:new Headers({
-			'Content-Type': 'application/json'
-		})
+		headers:new Headers(defaultHeaders)
 	});
 
 	newOptions.body = newOptions.body && JSON.stringify(newOptions.body);

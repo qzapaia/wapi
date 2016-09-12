@@ -7,7 +7,7 @@ module.exports = function(apiOptions){
       options:apiOptions,
       baseURL:process.env.BASE_PATH + req.originalUrl.replace(req.path,'') + apiOptions.prefix
     };
-
+    
     next();
   }
 }
