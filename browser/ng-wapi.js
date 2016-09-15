@@ -15,6 +15,7 @@ angular.module('ngWapi',[])
 .directive('wForm',function(){
   return {
         restrict: 'AE',
+				scope:true,
         replace: true,
 				link:function(scope,el,attrs){
 					scope._dz = {};
