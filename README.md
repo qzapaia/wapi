@@ -107,7 +107,7 @@ or
 		...
 		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
 	</head>
-	<body ng-app="ngWapi" ng-cloak>
+	<body ng-app="ngWapi" ng-cloak="waaws">
 		...
 		<script type="text/javascript" src="//apihost/browser/ng-wapi.js"></script>
 	</body>
