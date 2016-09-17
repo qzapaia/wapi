@@ -86,21 +86,14 @@ Every API method receive selected data from the request
 | access_token  | `Bearer 1234` authorization header or /api/v1/user/?access_token=1234  |
 | headers  | HTTP headers |
 
-
-
-
-## Client side setup
-
-#### Vanilla JS (externalize `wapi` object)
+# Client side (creates `wapi` global object)
 ```html
 	...
 	<script type="text/javascript" src="//apihost/browser/index.js"></script>
 </body>
 ```
 
-or
-
-#### Angular
+# Angular
 
 
 ```html
@@ -112,7 +105,7 @@ or
 		<script type="text/javascript" src="//apihost/browser/ng-wapi.js"></script>
 	</body>
 ```
-**PST:** If the app is already an Angular application just call `ng-wapi.js` and
+**PST!** If the app is already an Angular application just call `ng-wapi.js` and
 set the `ngWapi` module as dependency of your app.
 
 ```js
