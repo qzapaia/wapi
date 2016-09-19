@@ -26,6 +26,7 @@ module.exports = function(api){
 
   router.use(function(req,res,next){
     var methodName = _.camelCase(req.method + '-' + req.params.resource);
+
     var options = _.chain(req)
                    .pick(['body', 'files', 'headers', 'query'])
                    .defaults({
@@ -37,11 +38,16 @@ module.exports = function(api){
                    })
                    .value();
 
-    var prom = api[methodName] && api[methodName](options);
-    if(prom && prom.then){
-      prom.then(function(success){
+    var promise = api[methodName] && api[methodName](options);
+
+    if(promise && promise.then){
+      promise = promise.then(function(success){
         res.json(success)
-      }).catch(function(error){
+      });
+
+      var failMethodName = promise.catch ? 'catch' : 'fail';
+
+      promise[failMethodName](function(error){
         error = _.defaults(error,{ status:400,data:{error:error.toString()} })
         res.status(error.status).json(error.data);
       });
