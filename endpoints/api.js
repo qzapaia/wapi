@@ -53,6 +53,7 @@ module.exports = function(api){
       });
     }else{
       console.log('WAPI: method '+methodName+' doesn\'t return a Promise');
+      next();
     }
   });
 
