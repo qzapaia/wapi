@@ -1,6 +1,6 @@
 {
   "name": "wapi",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "main": "index.js",
   "description": "WAPI is a middleware generator for express that make the common tasks in an API (REST, emails, etc .. ) easier",
   "scripts": {
