@@ -4,12 +4,14 @@
   "main": "index.js",
   "description": "WAPI is a middleware generator for express that make the common tasks in an API (REST, emails, etc .. ) easier",
   "scripts": {
+    "up":"npm run commpatch && git push origin master && npm publish",
     "commpatch": "git commit -am 'new patch' && npm run patch",
     "patch": "npm version patch -m 'patch'"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "apicache": "^0.2.2",
     "body-parser": "^1.15.2",
     "browserify": "^13.0.1",
     "cors": "^2.7.1",

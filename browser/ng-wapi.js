@@ -57,8 +57,11 @@ angular.module('ngWapi',[])
                 name:formName,
                 body:$scope.data,
                 files:files
-              }).then(function(){
-                $scope.submitted = true;
+              }).then(function(response){
+								return response.json();
+              }).then(function(responseJSON){
+								$scope.submitted = true;
+                $scope.response = responseJSON;
                 $scope.$digest();
               }).catch(function(e){
                 $scope.fail = true;

@@ -1,9 +1,9 @@
 var browserify = require('browserify');
 var path = require('path');
 var _ = require('lodash');
+var cache = require('apicache').middleware;
 
-
-module.exports = function(req,res,next){
+module.exports = [cache('5 minutes'), function(req,res,next){
 	var b = browserify();
 
 	var configInjectedFromServer = {
@@ -14,4 +14,4 @@ module.exports = function(req,res,next){
 
 	res.write('window._wapiConfigFromServer='+JSON.stringify(configInjectedFromServer)+';');
 	b.bundle().pipe(res);
-}
+}]

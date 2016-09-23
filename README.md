@@ -144,5 +144,10 @@ In order to connect a form to an endpoint of the API
 	<div ng-show="fail">
 		:(
 	</div>
+
+  <!-- Also, we have the server response in a response object -->
+  <div>
+    {{response}}
+  </div>
 </form>
 ```
