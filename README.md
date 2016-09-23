@@ -32,7 +32,7 @@ var api = {
 app.use(wapi(api));
 
 app.listen(port,function(){
-	console.log(port);
+  console.log(port);
 })
 
 ```
@@ -88,8 +88,8 @@ Every API method receive selected data from the request
 
 # Client side (creates `wapi` global object)
 ```html
-	...
-	<script type="text/javascript" src="//apihost/browser/index.js"></script>
+  ...
+  <script type="text/javascript" src="//apihost/browser/index.js"></script>
 </body>
 ```
 
@@ -97,20 +97,20 @@ Every API method receive selected data from the request
 
 
 ```html
-		...
-		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
-	</head>
-	<body ng-app="ngWapi" ng-cloak="waaws">
-		...
-		<script type="text/javascript" src="//apihost/browser/ng-wapi.js"></script>
-	</body>
+    ...
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+  </head>
+  <body ng-app="ngWapi" ng-cloak="waaws">
+    ...
+    <script type="text/javascript" src="//apihost/browser/ng-wapi.js"></script>
+  </body>
 ```
 **PST!** If the app is already an Angular application just call `ng-wapi.js` and
 set the `ngWapi` module as dependency of your app.
 
 ```js
-	// example
-	angular.module('myApp',['ngWapi']);
+  // example
+  angular.module('myApp',['ngWapi']);
 ```
 
 
