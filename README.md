@@ -127,24 +127,22 @@ In order to connect a form to an endpoint of the API
 
 ```html
 <form w-form="contact" ng-submit="submit()">
+  <fieldset>
+    <input type="text" ng-model="data.email" value="test@test.com" />
+    <button>Enviar</button>
+  </fieldset>
 
-	<fieldset>
-		<input type="text" ng-model="data.email" value="test@test.com" />
-		<button>Enviar</button>
-	</fieldset>
+  <fieldset>
+    <button type="button" file name="cv">CV</button>
+    <div file name="picture">Pic</div>
+  </fieldset>
 
-	<fieldset>
-		<button type="button" file name="cv">CV</button>
-		<div file name="picture">Pic</div>
-	</fieldset>
-
-	<div ng-show="submitted">
-		Great
-	</div>
-	<div ng-show="fail">
-		:(
-	</div>
-
+  <div ng-show="submitted">
+    Great
+  </div>
+  <div ng-show="fail">
+    :(
+  </div>
   <!-- Also, we have the server response in a response object -->
   <div>
     {{response}}
