@@ -53,17 +53,29 @@ angular.module('ngWapi',[])
 								}
 							});
 
+							$scope.sending = true;
+
               apiClient.submitForm({
                 name:formName,
                 body:$scope.data,
                 files:files
               }).then(function(response){
+								$scope.sending = false;
 								return response.json();
               }).then(function(responseJSON){
+								// 'submitted' means ok post
 								$scope.submitted = true;
+
                 $scope.response = responseJSON;
-                $scope.$digest();
+
+								if($attrs.onResponseRedirect){
+									var redirectTo = $scope.$eval($attrs.onResponseRedirect);
+									location.href=redirectTo;
+								}
+
+								$scope.$digest();
               }).catch(function(e){
+								$scope.sending = false;
                 $scope.fail = true;
                 $scope.$digest();
               })
