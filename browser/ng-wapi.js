@@ -10,8 +10,14 @@ if(!window.angular){
   throw 'Angular is not present.\nInclude <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script> before ng-wapi 😬';
 };
 
-if(angular.module('ngWapi')){
-	throw 'ngWapi is already present. Avoiding initialization ...';
+try {
+	if(angular.module('ngWapi')){
+		throw 'exists';
+	};
+}catch(err){
+	if(err == 'exists'){
+		throw 'ngWapi is already present. Avoiding initialization ...';
+	}
 }
 
 angular.module('ngWapi',[])
