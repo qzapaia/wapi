@@ -121,12 +121,14 @@ In order to connect a form to an endpoint of the API
 2. Place the `ng-submit` listener and call the `submit()` method
 3. Set all the input that you wanna send with `ng-model="data.fieldName"`
 4. Use ng-show to show `submitted` or `fail` states
-5. Add `file` attribute to create attach files buttons (dropzone) and use the `name` attribute.
+5. Use on-response-redirect attribute if want to redirect when submit finished.
+   It is an expression so, it can acces to the scope.
+6. Add `file` attribute to create attach files buttons (dropzone) and use the `name` attribute.
   - In order to customize the preview of the files overwrite this CSS classes: `.dz-preview` `.dz-image`
   `.dz-details` `.dz-progress` `.dz-error-message` `.dz-success-mark` `.dz-error-mark`
 
 ```html
-<form w-form="contact" ng-submit="submit()">
+<form w-form="contact" ng-submit="submit()" on-response-redirect="'/ok'">
   <fieldset>
     <input type="text" ng-model="data.email" value="test@test.com" />
     <button>Enviar</button>
@@ -143,7 +145,7 @@ In order to connect a form to an endpoint of the API
   <div ng-show="fail">
     :(
   </div>
-  <!-- Also, we have the server response in a response object -->
+  <!-- Also, we have the server response in a 'response' object -->
   <div>
     {{response}}
   </div>
