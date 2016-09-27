@@ -21,6 +21,9 @@ try {
 }
 
 angular.module('ngWapi',[])
+.config(function($sceDelegateProvider) {
+  $sceDelegateProvider.resourceUrlWhitelist(['**']);
+})
 .directive('wForm',function(){
   return {
         restrict: 'AE',
