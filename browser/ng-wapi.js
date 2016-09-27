@@ -10,8 +10,11 @@ if(!window.angular){
   throw 'Angular is not present.\nInclude <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script> before ng-wapi 😬';
 };
 
-angular.module('ngWapi',[])
+if(angular.module('ngWapi')){
+	throw 'ngWapi is already present. Avoiding initialization ...';
+}
 
+angular.module('ngWapi',[])
 .directive('wForm',function(){
   return {
         restrict: 'AE',
