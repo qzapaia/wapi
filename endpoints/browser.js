@@ -5,7 +5,7 @@ var cache = require('apicache').middleware;
 
 module.exports = [cache('5 minutes'), function(req,res,next){
 	var b = browserify();
-
+	
 	var configInjectedFromServer = {
 		baseURL: req._api.baseURL
 	};

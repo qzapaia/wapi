@@ -3,7 +3,6 @@ var Router = require('router');
 var _ = require('lodash');
 var multimiddHelper = require('../helpers/multipart-middleware.js');
 
-
 var getAccessToken = function(req){
   var headerToken = req.headers.authorization && req.headers.authorization.split('Bearer ')[1];
 
@@ -23,10 +22,9 @@ module.exports = function(api){
   router.use(bodyParser.json({limit: '50mb'}))
   router.use(multimiddHelper());
 
-
   router.use(function(req,res,next){
     var methodName = _.camelCase(req.method + '-' + req.params.resource);
-
+    
     var options = _.chain(req)
                    .pick(['body', 'files', 'headers', 'query'])
                    .defaults({
@@ -34,7 +32,8 @@ module.exports = function(api){
                       resourceName:req.params.resource,
                       id:req.params.id,
                       access_token:getAccessToken(req),
-                      options:req.query
+                      options:req.query,
+                      baseURL:req._api.baseURL
                    })
                    .value();
 

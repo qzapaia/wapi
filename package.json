@@ -2,7 +2,7 @@
   "name": "wapi",
   "version": "1.0.21",
   "main": "index.js",
-  "description": "WAPI is a middleware generator for express that make the common tasks in an API (REST, emails, etc .. ) easier",
+  "description": "WAPI is a middleware for connect/express that make the common tasks in an API easier.",
   "scripts": {
     "up": "npm run commpatch && git push origin master && npm publish",
     "commpatch": "git commit -am 'new patch' && npm run patch",
