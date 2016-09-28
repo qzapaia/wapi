@@ -149,7 +149,16 @@ In order to connect a form to an endpoint of the API
 
 ## Get a resource
 
+```html
+<div w-get="'/products/1234'">
 
+  <label>Product name</label>
+  <div>
+    {{data.name}}
+  </div>
+
+</div>
+```
 
 # Client side - Vanilla
 
