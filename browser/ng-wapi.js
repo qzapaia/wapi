@@ -66,6 +66,7 @@ angular.module('ngWapi',[])
 					});
 
 					$scope.sending = true;
+					$scope.submitting = true;
 
           apiClient.submitForm({
             name:formName,

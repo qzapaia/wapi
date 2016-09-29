@@ -119,6 +119,22 @@ In order to connect a form to an endpoint of the API
   - In order to customize the preview of the files overwrite this CSS classes: `.dz-preview` `.dz-image`
   `.dz-details` `.dz-progress` `.dz-error-message` `.dz-success-mark` `.dz-error-mark`
 
+  | Scope Var  | Type | Detail |
+  | ------------- | ------------- |
+  | data  | Object | Data to be submitted |
+  | submitting / sending  | Boolean | form is posting |
+  | submitted / success  | Boolean | the request is complete and no errors present |
+  | response  | Object | the response of the request |
+  | redirecting  | Boolean | when is redirecting |
+  | fail  | Boolean | Query string params |
+  | submit  | function | Function to be called in order to init the form post |
+
+  | Attributes  | Type | Detail |
+  | ------------- | ------------- |
+  | w-form  | String | Start the directive and set the name of the endpoint to post |
+  | on-response-redirect  | Expression | URL to be redirected after post |
+  | redirect-delay  | Number | Milliseconds to wait before redirect |
+
 ```html
 <form w-form="contact" ng-submit="submit()" on-response-redirect="'/ok'">
   <fieldset>
@@ -148,6 +164,14 @@ In order to connect a form to an endpoint of the API
 ```
 
 ## Get a resource
+
+| Scope Var  | Type | Detail |
+| ------------- | ------------- |
+| data  | Object | Data received from the endpoint |
+
+| Attributes  | Type | Detail |
+| ------------- | ------------- |
+| w-get  | String | Start the directive and set the path of the endpoint to be called |
 
 ```html
 <div w-get="'/products/1234'">
