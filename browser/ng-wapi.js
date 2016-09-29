@@ -73,18 +73,23 @@ angular.module('ngWapi',[])
             files:files
           }).then(function(response){
 						// 'submitted' means ok post
-						$scope.sending = false;
 						$scope.submitted = true;
-
-            $scope.response = response;
+						$scope.success = true;
+						$scope.response = response;
 
 						if($attrs.onResponseRedirect){
+							$scope.redirecting = true;
 							var redirectTo = $scope.$eval($attrs.onResponseRedirect);
-							location.href=redirectTo;
+							var delay = $attrs.redirectDelay ? parseInt($attrs.redirectDelay) : 0;
+
+							setTimeout(function(){
+								location.href=redirectTo;
+							}, delay);
+						}else{
+							$scope.sending = false;
 						}
 
 						$scope.$digest();
-
           }).catch(function(e){
 						$scope.sending = false;
             $scope.fail = true;
