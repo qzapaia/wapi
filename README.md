@@ -83,12 +83,12 @@ Every API endpoint receive selected data from the request.
 | access_token  | `Bearer 1234` authorization header or /api/v1/user/?access_token=1234  |
 | headers  | HTTP headers |
 
-## Client Side - Angular
-
 **IMPORTANT:** In order to client connect with the server correctly, set `BASE_URL`
 environment variable in the server. Example: `http://api.myserver.com/`
 
 Otherwise, WAPI server will try to resolve this value but with certain risk of mistake.
+
+## Client Side - Angular
 
 ```html
   <body ng-app="ngWapi" ng-cloak="waaws">
@@ -104,6 +104,10 @@ set the `ngWapi` module as dependency of your app.
   // example
   angular.module('myApp',['ngWapi']);
 ```
+
+## Tips
+
+- Avoid `{{var}}` to print text, use `ng-bind` instead. This prevent the blink effect when variables doesn't exist yet.
 
 ### Root Scope vars
 This variables are available in all the ngWapi scope
