@@ -131,7 +131,9 @@ In order to connect a form to an endpoint of the API
 | fail  | Boolean | Query string params |
 | submit  | function | Function to be called in order to init the form post |
 
-| Attributes  | Type | Detail |
+### Attributes
+
+| Attribute  | Type | Detail |
 | ------------- | ------------- | ------------- |
 | w-form  | String | Start the directive and set the name of the endpoint to post |
 | on-response-redirect  | Expression | URL to be redirected after post |

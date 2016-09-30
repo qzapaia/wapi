@@ -2,6 +2,7 @@ var bodyParser = require('body-parser');
 var Router = require('router');
 var _ = require('lodash');
 var multimiddHelper = require('../helpers/multipart-middleware.js');
+var url = require('url');
 
 var getAccessToken = function(req){
   var headerToken = req.headers.authorization && req.headers.authorization.split('Bearer ')[1];
@@ -24,10 +25,13 @@ module.exports = function(api){
 
   router.use(function(req,res,next){
     var methodName = _.camelCase(req.method + '-' + req.params.resource);
-    
+    var referer = url.parse(req.headers.referer);
+        referer.origin = referer.protocol + '//' + referer.host;
+        
     var options = _.chain(req)
                    .pick(['body', 'files', 'headers', 'query'])
-                   .defaults({
+                   .assign({
+                      referer:referer,
                       payload:req.body,
                       resourceName:req.params.resource,
                       id:req.params.id,
