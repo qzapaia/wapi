@@ -25,9 +25,13 @@ module.exports = function(api){
 
   router.use(function(req,res,next){
     var methodName = _.camelCase(req.method + '-' + req.params.resource);
-    var referer = url.parse(req.headers.referer);
-        referer.origin = referer.protocol + '//' + referer.host;
-        
+    var referer = null;
+    
+    if(req.headers.referer){
+      referer = url.parse(req.headers.referer);
+      referer.origin = referer.protocol + '//' + referer.host;
+    }
+
     var options = _.chain(req)
                    .pick(['body', 'files', 'headers', 'query'])
                    .assign({
