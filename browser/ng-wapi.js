@@ -22,6 +22,12 @@ try {
 }
 
 angular.module('ngWapi',[])
+.run(['$rootScope',function($rootScope){
+	$rootScope.wLocation = {
+		path:location.pathname.split('/'),
+		query:querystring.parse(location.search.slice(1))
+	}
+}])
 .config(['$sceDelegateProvider',function($sceDelegateProvider){
   $sceDelegateProvider.resourceUrlWhitelist(['**']);
 }])
@@ -97,18 +103,6 @@ angular.module('ngWapi',[])
             $scope.$digest();
           })
         }
-    }]
-  };
-})
-.directive('wUrl',function(){
-	return {
-    restrict: 'AE',
-		scope:false,
-    controller: ['$scope','$attrs','$location',function ($scope,$attrs,$location){
-			$scope.url = {
-				path:location.pathname.split('/'),
-				query:querystring.parse(location.search.slice(1))
-			}
     }]
   };
 })

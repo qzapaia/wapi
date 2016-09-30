@@ -105,6 +105,12 @@ set the `ngWapi` module as dependency of your app.
   angular.module('myApp',['ngWapi']);
 ```
 
+### Root Scope vars
+This variables are available in all the ngWapi scope
+
+| Var  | Type | Detail |
+| ------------- | ------------- | ------------- |
+| wLocation  | Object | Current URL representation |
 
 ## Forms
 In order to connect a form to an endpoint of the API
@@ -180,7 +186,7 @@ In order to connect a form to an endpoint of the API
 | w-get  | String | Start the directive and set the path of the endpoint to be called |
 
 ```html
-<div w-get="'/products/1234'">
+<div w-get="'/products/' + wLocation.id">
 
   <label>Product name</label>
   <div>
