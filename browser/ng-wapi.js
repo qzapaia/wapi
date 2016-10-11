@@ -59,7 +59,6 @@ angular.module('ngWapi',[])
 
 		},
     controller: ['$scope','$attrs',function ($scope,$attrs) {
-				window.s = $scope;
         var formName = $attrs.wForm;
 
         $scope.submit = function(){
@@ -71,6 +70,7 @@ angular.module('ngWapi',[])
 						}
 					});
 
+					$scope.fail = false;
 					$scope.sending = true;
 					$scope.submitting = true;
 

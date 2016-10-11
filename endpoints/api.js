@@ -3,6 +3,7 @@ var Router = require('router');
 var _ = require('lodash');
 var multimiddHelper = require('../helpers/multipart-middleware.js');
 var url = require('url');
+var cache = require('memory-cache');
 
 var getAccessToken = function(req){
   var headerToken = req.headers.authorization && req.headers.authorization.split('Bearer ')[1];
@@ -26,7 +27,8 @@ module.exports = function(api){
   router.use(function(req,res,next){
     var methodName = _.camelCase(req.method + '-' + req.params.resource);
     var referer = null;
-    
+    var cacheKey = req.method + req.originalUrl;
+
     if(req.headers.referer){
       referer = url.parse(req.headers.referer);
       referer.origin = referer.protocol + '//' + referer.host;
@@ -45,16 +47,21 @@ module.exports = function(api){
                    })
                    .value();
 
+    // response time
+    if(cache.get(cacheKey)){
+      res.json(cache.get(cacheKey));
+      return;
+    }
+
     var promise = api[methodName] && api[methodName](options);
 
     if(promise && promise.then){
-      promise = promise.then(function(success){
-        res.json(success)
+      promise = promise.then(function(response){
+        cache.put(cacheKey, response, 10000);
+        res.json(response);
       });
 
-      var failMethodName = promise.catch ? 'catch' : 'fail';
-
-      promise[failMethodName](function(error){
+      promise[promise.catch ? 'catch' : 'fail'](function(error){
         error = _.defaults(error,{ status:400,data:{error:error.toString()} })
         res.status(error.status).json(error.data);
       });
