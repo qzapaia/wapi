@@ -116,6 +116,7 @@ angular.module('ngWapi',[])
 			apiClient.getResource({
 				resourcePath:$scope.resourcePath
 			}).then(function(response){
+				if($attrs.dev){ console.log(response) }
 				$scope.data = response;
 				$scope.$digest();
 			});

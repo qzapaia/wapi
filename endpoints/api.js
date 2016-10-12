@@ -4,6 +4,7 @@ var _ = require('lodash');
 var multimiddHelper = require('../helpers/multipart-middleware.js');
 var url = require('url');
 var cache = require('memory-cache');
+var devEnv = process.env.NODE_ENV == 'development';
 
 var getAccessToken = function(req){
   var headerToken = req.headers.authorization && req.headers.authorization.split('Bearer ')[1];
@@ -57,7 +58,7 @@ module.exports = function(api){
 
     if(promise && promise.then){
       promise = promise.then(function(response){
-        cache.put(cacheKey, response, 10000);
+        cache.put(cacheKey, response, devEnv ? 30000 : 10000);
         res.json(response);
       });
 
