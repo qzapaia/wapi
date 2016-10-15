@@ -112,12 +112,16 @@ angular.module('ngWapi',[])
 		scope: true,
     controller: ['$scope', '$attrs', function($scope,$attrs){
 			$scope.resourcePath = $scope.$eval($attrs.wGet);
+			$scope.loading = true;
 
 			apiClient.getResource({
 				resourcePath:$scope.resourcePath
 			}).then(function(response){
 				if($attrs.dev){ console.log(response) }
+
+				$scope.loading = false;
 				$scope.data = response;
+
 				$scope.$digest();
 			});
     }]
