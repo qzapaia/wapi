@@ -11,7 +11,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "apicache": "^0.2.2",
     "body-parser": "^1.15.2",
     "browserify": "^13.0.1",
     "cors": "^2.7.1",
@@ -21,6 +20,7 @@
     "memory-cache": "^0.1.6",
     "multiparty": "^4.1.2",
     "router": "^1.1.4",
+    "uglifyify": "^3.0.4",
     "whatwg-fetch": "^1.0.0"
   }
 }

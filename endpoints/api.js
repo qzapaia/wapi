@@ -49,7 +49,8 @@ module.exports = function(api){
                    .value();
 
     // response time
-    if(cache.get(cacheKey)){
+    if(req.method == 'GET' && cache.get(cacheKey)){
+      console.log('response from cache');
       res.json(cache.get(cacheKey));
       return;
     }
