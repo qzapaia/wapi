@@ -18,11 +18,9 @@ module.exports = [function(req,res,next){
 			body.push(chunk);
 			wr.call(res,chunk);
 		}
-
 		res.on('finish',function(){
-			cache.put(cacheKey, body.join(''), devEnv ? 30000 : 10000)
+			cache.put(cacheKey, body.join(''))
 		});
-
 		next();
 	}
 },function(req,res,next){
