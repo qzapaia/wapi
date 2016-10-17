@@ -1,6 +1,6 @@
 {
   "name": "wapi",
-  "version": "1.0.33",
+  "version": "1.0.34",
   "main": "index.js",
   "description": "WAPI is a middleware for connect/express that make the common tasks in an API easier.",
   "scripts": {
