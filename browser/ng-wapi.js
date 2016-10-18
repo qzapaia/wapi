@@ -2,6 +2,8 @@ var apiClient = require('./api-client');
 var Dropzone = require('dropzone');
 var querystring = require("querystring");
 
+window.wapiClient = apiClient;
+
 var _ = {
 	defaults:require('lodash/defaults'),
 	forIn:require('lodash/forIn')
