@@ -50,7 +50,7 @@ module.exports = function(api){
 
     // response time
     if(req.method == 'GET' && cache.get(cacheKey)){
-      console.log('response from cache');
+      console.log('response from cache ',cacheKey);
       res.json(cache.get(cacheKey));
       return;
     }
@@ -60,6 +60,7 @@ module.exports = function(api){
     if(promise && promise.then){
       promise = promise.then(function(response){
         cache.put(cacheKey, response, devEnv ? 30000 : 10000);
+        console.log('response from promise',cacheKey)
         res.json(response);
       });
 
