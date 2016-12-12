@@ -210,3 +210,34 @@ In order to connect a form to an endpoint of the API
   </script>
 </body>
 ```
+### Forms
+
+It use the `.wapi-form-wrapper` `.wapi-form` `.wapi-form-done` `.wapi-form-fail`
+classes to work
+
+**IMPORTANT**: **data-form-name** attribute is necesary in the wrapper
+
+```html
+	<!-- HTML Structure - Look the classes !! and the data-form-name attribute -->
+	<div class="wapi-form-wrapper" data-form-name="contact">
+		<form class="wapi-form">
+			<input type="text" name="email" value="test@test.com" />  
+			<button>Enviar</button>
+		</form>
+
+		<div class="wapi-form-done">
+			Great
+		</div>
+		<div class="wapi-form-fail">
+			:(
+		</div>
+	</div>
+
+	...
+
+	<script type="text/javascript" src="//myapi.com/browser/index.js"></script>
+	<script>
+		wapi.autoInitForms();
+	</script>
+</body>
+```
