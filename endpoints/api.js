@@ -64,10 +64,12 @@ module.exports = function(api){
         res.json(response);
       });
 
-      promise[promise.catch ? 'catch' : 'fail'](function(err){
-        var error = _.defaults(error,{ status:400,data:JSON.strignify(err) })
+      promise[promise.catch ? 'catch' : 'fail'](function(error){
+        error = error || {};
+        var status = error.status || 400;
+        var detail = error.detail || {};
 
-        res.status(error.status).json(JSON.strignify(error.data));
+        res.status(status).json(detail);
       });
     }else{
       console.log('WAPI: method '+methodName+' doesn\'t return a Promise');
