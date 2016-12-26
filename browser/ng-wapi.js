@@ -30,6 +30,11 @@ angular.module('ngWapi',[])
 		query:querystring.parse(location.search.slice(1))
 	}
 	$rootScope.accessToken = localStorage.getItem('access_token');
+
+	$rootScope.logout = function(redirectTo){
+		localStorage.removeItem('access_token');
+		location.href = redirectTo;
+	}
 }])
 .config(['$sceDelegateProvider',function($sceDelegateProvider){
   $sceDelegateProvider.resourceUrlWhitelist(['**']);
@@ -103,7 +108,6 @@ angular.module('ngWapi',[])
 						if($attrs.loginForm){
 							localStorage.setItem('access_token',response.token)
 						}
-
 						if($attrs.onResponseRedirect){
 							$scope.redirecting = true;
 							var redirectTo = $scope.$eval($attrs.onResponseRedirect);

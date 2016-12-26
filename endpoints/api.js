@@ -59,7 +59,7 @@ module.exports = function(api){
 
     if(promise && promise.then){
       promise = promise.then(function(response){
-        cache.put(cacheKey, response, devEnv ? 30000 : 10000);
+        cache.put(cacheKey, response, devEnv ? 3000 : 500);
         console.log('response from promise',cacheKey)
         res.json(response);
       });
