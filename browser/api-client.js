@@ -25,10 +25,14 @@ var jsonFetch = function(url,options){
 		'Content-Type': 'application/json'
 	}
 
-	var localStorageHeaders = _.pick(localStorage,['id_token','acccess_token']);
+	var localStorageTokens = _.pick(localStorage,['id_token','access_token']);
+	var authorizationHeaders = {};
+	if(localStorageTokens.access_token){
+		authorizationHeaders['Authorization'] = 'Bearer ' + localStorageTokens.access_token;
+	}
 
 	options = _.defaults(options, {
-		headers:new Headers(_.defaults(localStorageHeaders,contentTypeHeaders))
+		headers:new Headers(_.defaults(localStorageTokens,contentTypeHeaders,authorizationHeaders))
 	});
 
 	if(!options.multipart){
@@ -67,3 +71,4 @@ exports.getResource = function(options){
   var url = options.resourcePath;
   return jsonFetch(url);
 }
+exports.jsonFetch = jsonFetch;

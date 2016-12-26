@@ -29,6 +29,7 @@ angular.module('ngWapi',[])
 		path:location.pathname.split('/'),
 		query:querystring.parse(location.search.slice(1))
 	}
+	$rootScope.accessToken = localStorage.getItem('access_token');
 }])
 .config(['$sceDelegateProvider',function($sceDelegateProvider){
   $sceDelegateProvider.resourceUrlWhitelist(['**']);
@@ -62,9 +63,12 @@ angular.module('ngWapi',[])
 		},
     controller: ['$scope','$attrs',function ($scope,$attrs) {
         var formName = $attrs.wForm;
+        var json = $attrs.json;
 
-        $scope.submit = function(){
+        $scope.submit = function(data){
 					var files = {};
+					var body = data || $scope.data;
+					var promise;
 
 					_.forIn($scope._dz, function(dz, name) {
 						if(dz.files){
@@ -76,15 +80,29 @@ angular.module('ngWapi',[])
 					$scope.sending = true;
 					$scope.submitting = true;
 
-          apiClient.submitForm({
+          promise = json ?
+					apiClient.jsonFetch(formName,{
+						body:body,
+						method:'POST'
+					}):apiClient.submitForm({
             name:formName,
-            body:$scope.data,
+            body:body,
             files:files
-          }).then(function(response){
+          });
+
+					promise.then(function(response){
 						// 'submitted' means ok post
 						$scope.submitted = true;
 						$scope.success = true;
 						$scope.response = response;
+
+						if($attrs.replaceEntireScope){
+							$scope.data = response;
+						}
+
+						if($attrs.loginForm){
+							localStorage.setItem('access_token',response.token)
+						}
 
 						if($attrs.onResponseRedirect){
 							$scope.redirecting = true;
