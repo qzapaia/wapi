@@ -59,9 +59,13 @@ module.exports = function(api){
 
     if(promise && promise.then){
       promise = promise.then(function(response){
-        cache.put(cacheKey, response, devEnv ? 3000 : 500);
-        console.log('response from promise',cacheKey)
-        res.json(response);
+        if(response.redirect){
+          res.redirect(response.redirect,307);
+        }else{
+          cache.put(cacheKey, response, devEnv ? 3000 : 500);
+          console.log('response from promise',cacheKey)
+          res.json(response);
+        }
       });
 
       promise[promise.catch ? 'catch' : 'fail'](function(error){
